@@ -55,7 +55,7 @@ function useZaps() {
     }
 }
 
-export default function() {
+export function() {
     const { loading, zaps } = useZaps();
     const router = useRouter();
     
