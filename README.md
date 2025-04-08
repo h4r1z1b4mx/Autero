@@ -1,2 +1,2 @@
 System Architecture
-![image](https://github.com/user-attachments/assets/d9dcb96d-7067-4cb0-9a50-f923b1ea517a)
+![image](https://github.com/h4r1z1b4mx/Autero/blob/main/autero.png)
