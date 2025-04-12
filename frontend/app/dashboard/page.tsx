@@ -55,7 +55,7 @@ function useZaps() {
     }
 }
 
-export function() {
+export default function Home() {
     const { loading, zaps } = useZaps();
     const router = useRouter();
     
@@ -88,14 +88,21 @@ function ZapTable({ zaps }: {zaps: Zap[]}) {
                 <div className="flex-1">Webhook URL</div>
                 <div className="flex-1">Go</div>
         </div>
-        {zaps.map(z => <div className="flex border-b border-t py-4">
-            <div className="flex-1 flex"><img src={z.trigger.type.image} className="w-[30px] h-[30px]" /> {z.actions.map(x => <img src={x.type.image} className="w-[30px] h-[30px]" />)}</div>
-            <div className="flex-1">{z.id}</div>
-            <div className="flex-1">Nov 13, 2023</div>
-            <div className="flex-1">{`${HOOKS_URL}/hooks/catch/1/${z.id}`}</div>
-            <div className="flex-1"><LinkButton onClick={() => {
-                    router.push("/zap/" + z.id)
-                }}>Go</LinkButton></div>
-        </div>)}
+        {zaps.map(z => (
+  <div key={z.id} className="flex border-b border-t py-4">
+    <div className="flex-1 flex">
+      <img src={z.trigger.type.image} className="w-[30px] h-[30px]" alt="Trigger icon" />
+      {z.actions.map(x => (
+        <img key={x.id} src={x.type.image} className="w-[30px] h-[30px]" alt="Action icon" />
+      ))}
+    </div>
+    <div className="flex-1">{z.id}</div>
+    <div className="flex-1">Nov 13, 2023</div>
+    <div className="flex-1">{`${HOOKS_URL}/hooks/catch/1/${z.id}`}</div>
+    <div className="flex-1">
+      <LinkButton onClick={() => router.push("/zap/" + z.id)}>Go</LinkButton>
+    </div>
+  </div>
+))}
     </div>
 }
